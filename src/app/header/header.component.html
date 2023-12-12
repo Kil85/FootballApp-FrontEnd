@@ -1,1 +1,29 @@
-<p>header works!</p>
+<nav class="navbar navbar-expand">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="assets/images/football-157930_640.png" alt="Ball" width="30" height="30"
+                class="d-inline-block align-text-top">
+            FootballApp
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item" *ngIf="!isLogged">
+                    <button type="button" class="btn btn-outline-info me-2" (click)="onLogin()">Login</button>
+                </li>
+                <li class="nav-item" *ngIf="!isLogged">
+                    <button type="button" class="btn btn-outline-warning" (click)="onRegister()">Rejestracja</button>
+                </li>
+                <li class="nav-item dropdown" *ngIf="isLogged">
+                    <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{user.email}}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item logout" (click)="onLogout()">Wyloguj</a></li>
+                        <li><a class="dropdown-item settings" (click)="onSettings()">Ustawienia konta</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</nav>

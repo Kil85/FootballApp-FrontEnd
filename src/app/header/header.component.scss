@@ -1,0 +1,29 @@
+@use "../../styles/colors" as colors;
+
+.navbar {
+  background-color: colors.$darkPirmary;
+
+  a {
+    font-weight: bold;
+    color: colors.$brightColor;
+  }
+  .dropdown-item.settings {
+    color: #333;
+  }
+  .dropdown-item.logout {
+    color: tomato;
+  }
+  .dropdown-item {
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  .dropdown-item:hover {
+    background-color: #ccc;
+  }
+
+  .dropdown-menu.dropdown-menu-end.show {
+    background-color: colors.$middleColor;
+    border: #333 1px solid;
+  }
+}
