@@ -103,6 +103,15 @@ export class AuthService {
     }, expirationDuration);
   }
 
+  register(mail: string, password: string) {
+    return this.http
+      .post(this.baseLink + 'register', {
+        email: mail,
+        password: password,
+      })
+      .pipe(catchError(this.handleError));
+  }
+
   private handleError(errorRes: HttpErrorResponse) {
     console.log(errorRes);
     let errorMessage = 'An unknown error occurred!';

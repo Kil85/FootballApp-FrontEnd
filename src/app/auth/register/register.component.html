@@ -1,0 +1,47 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card" *ngIf="!isRegisted">
+                <div class="card-header bg-success text-white text-center">
+                    <h3 class="mb-0">Rejestracja</h3>
+                </div>
+                <div class="card-body">
+                    <form #authForm="ngForm" (ngSubmit)="onRegister(authForm)">
+                        <div class="mb-3">
+                            <label for="login" class="form-label">Email</label>
+                            <input type="email" id="email" class="form-control" ngModel name="email" required email
+                                class="form-control" autocomplete="off" placeholder="Wprowadź email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Hasło</label>
+                            <input type="password"
+                             id="password"
+                              ngModel
+                              name="password"
+                               required
+                                minlength="6"
+                                class="form-control"
+                                autocomplete="off"
+                            placeholder="Wprowadź hasło">
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Potwierdź hasło</label>
+                            <input type="password" id="confirmPassword" ngModel name="password" required minlength="6"
+                                class="form-control" autocomplete="off" placeholder="Wprowadź ponownie hasło">
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-info  mt-3">Zarejestruj się</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div *ngIf="isRegisted" class="custom-alert success">
+
+                <p class="alert-text">Rejestracja zakończona pomyślnie!</p>
+                <button class="btn btn-success" (click)="onAccept()">OK!</button>
+            </div>
+
+        </div>
+    </div>
+</div>
