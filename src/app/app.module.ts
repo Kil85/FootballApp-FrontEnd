@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { SidebarItemComponent } from './sidebar/sidebar-item/sidebar-item.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { RegisterComponent } from './auth/register/register.component';
     HeaderComponent,
     LoginComponent,
     RegisterComponent,
+    SidebarItemComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
