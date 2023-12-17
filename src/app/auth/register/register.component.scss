@@ -1,5 +1,14 @@
 @use "../../../styles/colors" as colors;
 
+.background {
+  background-color: #ddc3a5;
+  height: 100vh;
+}
+
+.form-control {
+  background-color: rgb(230, 230, 230);
+}
+
 .custom-alert {
   display: flex;
   align-items: center;

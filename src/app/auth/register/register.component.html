@@ -1,44 +1,48 @@
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card" *ngIf="!isRegisted">
-                <div class="card-header bg-success text-white text-center">
-                    <h3 class="mb-0">Registration</h3>
+<div class="background">
+    <app-header></app-header>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card" *ngIf="!isRegisted">
+                    <div class="card-header bg-success text-white text-center">
+                        <h3 class="mb-0">Registration</h3>
+                    </div>
+                    <p class="text-danger text-center transform-uppercase fw-bold mt-3 mb-0" *ngIf="errorMessage">
+                        {{errorMessage}}</p>
+                    <div class="card-body">
+                        <form #authForm="ngForm" (ngSubmit)="onRegister(authForm)">
+                            <div class="mb-3">
+                                <label for="login" class="form-label fw-bold">Email</label>
+                                <input type="email" id="email" class="form-control" ngModel name="email" required email
+                                    class="form-control" autocomplete="off" placeholder="Enter email">
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label fw-bold">Password</label>
+                                <input type="password" id="password" ngModel name="password" required minlength="6"
+                                    class="form-control" autocomplete="off" placeholder="Enter hasło">
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label fw-bold">Confirm Password</label>
+                                <input type="password" id="confirmPassword" ngModel name="confirmPassword" required
+                                    minlength="6" class="form-control" autocomplete="off"
+                                    placeholder="Confirm Password">
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-info  justify-content-center text-light"
+                                    [disabled]="!authForm.valid">Sign
+                                    up</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <p class="text-danger text-center transform-uppercase fw-bold mt-3 mb-0" *ngIf="errorMessage">
-                    {{errorMessage}}</p>
-                <div class="card-body">
-                    <form #authForm="ngForm" (ngSubmit)="onRegister(authForm)">
-                        <div class="mb-3">
-                            <label for="login" class="form-label fw-bold">Email</label>
-                            <input type="email" id="email" class="form-control" ngModel name="email" required email
-                                class="form-control" autocomplete="off" placeholder="Enter email">
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label fw-bold">Password</label>
-                            <input type="password" id="password" ngModel name="password" required minlength="6"
-                                class="form-control" autocomplete="off" placeholder="Enter hasło">
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label fw-bold">Confirm Password</label>
-                            <input type="password" id="confirmPassword" ngModel name="confirmPassword" required
-                                minlength="6" class="form-control" autocomplete="off" placeholder="Confirm Password">
-                        </div>
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-info  justify-content-center text-light"
-                                [disabled]="!authForm.valid">Sign
-                                up</button>
-                        </div>
-                    </form>
+
+                <div *ngIf="isRegisted" class="custom-alert success">
+
+                    <p class="alert-text">Registration completed successfully!</p>
+                    <button class="btn btn-success" (click)="onAccept()">OK!</button>
                 </div>
+
             </div>
-
-            <div *ngIf="isRegisted" class="custom-alert success">
-
-                <p class="alert-text">Registration completed successfully!</p>
-                <button class="btn btn-success" (click)="onAccept()">OK!</button>
-            </div>
-
         </div>
     </div>
 </div>

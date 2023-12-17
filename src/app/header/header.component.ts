@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 import { User } from '../shared/user.model';
-import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -15,34 +15,23 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isLogged = false;
   showButtons = true;
   private userSub: Subscription;
-  private routerSubscription: Subscription;
 
-  constructor(
-    private auth: AuthService,
-    private router: Router,
-    private path: ActivatedRoute
-  ) {}
+  constructor(private auth: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.userSub = this.auth.user.subscribe((u) => {
       this.isLogged = !!u;
       this.user = u;
-    });
-    // this.path.queryParams.subscribe((sth: Params) => {
-    //   if (sth['login']) {
-    //     this.showButtons = false;
-    //   } else {
-    //     this.showButtons = true;
-    //   }
-    // });
-    this.routerSubscription = this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this.checkPath();
-      }
+      console.log(this.router.url);
+      this.showButtons = !(
+        this.router.url.match('/login') || this.router.url.match('/register')
+      );
     });
   }
 
-  onSettings() {}
+  onSettings() {
+    console.log(this.showButtons);
+  }
   onLogout() {
     this.auth.logout();
   }
@@ -53,14 +42,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.router.navigate(['/login']);
   }
 
-  private checkPath() {
-    const currentPath = this.router.url;
-    this.showButtons = !(
-      currentPath.includes('/login') || currentPath.includes('/register')
-    );
+  private checkPath(url: string) {
+    this.showButtons = !(url.match('/login') || url.match('/register'));
+    console.log(this.showButtons);
   }
   ngOnDestroy(): void {
     this.userSub.unsubscribe();
-    this.routerSubscription.unsubscribe();
   }
 }

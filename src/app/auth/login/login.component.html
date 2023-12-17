@@ -1,33 +1,37 @@
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header bg-success text-white text-center">
-                    <h3 class="mb-0">Login</h3>
-                </div>
-                <p class="text-danger text-center transform-uppercase fw-bold mt-3 mb-0" *ngIf="errorMessage">
-                    {{errorMessage}}</p>
-                <div class="card-body">
-                    <form #authForm="ngForm" (ngSubmit)="onLogin(authForm)">
-                        <div class="mb-3">
-                            <label for="login" class="form-label">Email</label>
-                            <input type="email" id="email" class="form-control" ngModel name="email" required email
-                                class="form-control" autocomplete="current-email" placeholder="Enter email">
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" id="password" ngModel name="password" required minlength="6"
-                                class="form-control" autocomplete="current-password" placeholder="Enter password">
-                        </div>
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-success  mt-3"
-                                [disabled]="!authForm.valid">Login</button>
-                        </div>
-                        <div class="d-grid">
-                            <button type="button" class="btn btn-info text-light mt-3" (click)="onRegister()">Sign up
-                            </button>
-                        </div>
-                    </form>
+<div class="background">
+    <app-header></app-header>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-success text-white text-center">
+                        <h3 class="mb-0">Login</h3>
+                    </div>
+                    <p class="text-danger text-center transform-uppercase fw-bold mt-3 mb-0" *ngIf="errorMessage">
+                        {{errorMessage}}</p>
+                    <div class="card-body">
+                        <form #authForm="ngForm" (ngSubmit)="onLogin(authForm)">
+                            <div class="mb-3">
+                                <label for="login" class="form-label">Email</label>
+                                <input type="email" id="email" class="form-control" ngModel name="email" required email
+                                    class="form-control" autocomplete="current-email" placeholder="Enter email">
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" id="password" ngModel name="password" required minlength="6"
+                                    class="form-control" autocomplete="current-password" placeholder="Enter password">
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-success  mt-3"
+                                    [disabled]="!authForm.valid">Login</button>
+                            </div>
+                            <div class="d-grid">
+                                <button type="button" class="btn btn-info text-light mt-3" (click)="onRegister()">Sign
+                                    up
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

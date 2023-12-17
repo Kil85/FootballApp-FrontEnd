@@ -1,0 +1,4 @@
+<div *ngIf="!isLoaded" class="spinner"> <app-loading-spinner></app-loading-spinner></div>
+<div *ngIf="isLoaded">
+    <app-match-bar-item *ngFor="let league of matches.result" [matches]='league'></app-match-bar-item>
+</div>

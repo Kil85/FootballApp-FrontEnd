@@ -1,0 +1,21 @@
+<div class="container ">
+    <div class="row justify-content-center">
+        <div class="card">
+            <div class="card-header py-1">
+                <div class="league">
+                    <img [src]="leagueFlag" alt="Country flag" class="mx-1">
+                    <p>{{leagueName}}</p>
+                </div>
+
+                <div class="country">
+                    <img [src]="countryFlag" alt="Country flag" class="mx-1">
+                    <p>{{countryName}}</p>
+                </div>
+
+            </div>
+            <ul class="list-group list-group-flush">
+                <app-match-bar-item-match *ngFor="let m of matches" [match]='m'></app-match-bar-item-match>
+            </ul>
+        </div>
+    </div>
+</div>

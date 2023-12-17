@@ -1,0 +1,20 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-around;
+
+  .league,
+  .country {
+    display: flex;
+    
+    img {
+      max-width: 25px;
+      max-height: 25px;
+    }
+  }
+}

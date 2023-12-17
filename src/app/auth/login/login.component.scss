@@ -1,4 +1,13 @@
+@use "../../../styles/colors" as colors;
+.background {
+  background-color: #ddc3a5;
+  height: 100vh;
+}
+
 .card {
+  .form-control {
+    background-color: rgb(230, 230, 230);
+  }
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 

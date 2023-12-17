@@ -1,0 +1,11 @@
+<div class="container mt-3 mb-5">
+    <div class="row justify-content-center">
+        <div class="small-tile" *ngFor="let day of currentWeek">
+            <div class="card" [ngClass]="{'selected-tile': day.isSelected}" (click)="selectDate(day)">
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{ day.formattedDate }}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

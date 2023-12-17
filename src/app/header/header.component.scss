@@ -1,11 +1,12 @@
 @use "../../styles/colors" as colors;
 
 .navbar {
-  background-color: colors.$darkPirmary;
+  background-color: #00008B;
 
   a {
     font-weight: bold;
-    color: colors.$brightColor;
+    // color: #eea47f;
+    color: #ddd;
   }
   .dropdown-item.settings {
     color: #333;

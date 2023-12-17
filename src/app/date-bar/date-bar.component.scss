@@ -1,0 +1,30 @@
+* {
+  padding: 0;
+  //   margin: 0;
+  box-sizing: border-box;
+}
+
+.small-tile {
+  width: 80px;
+  margin: 2px;
+  //   padding: 10px;
+}
+
+.card {
+  background-color: #e0a96d;
+  // background-color: #101820;
+  color: #333;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.card:hover {
+  background-color: #f0f0f023;
+  box-shadow: #e0a96d 0 0 3px;
+}
+
+.selected-tile {
+  background-color: #b0793d; /* Kolor dla wybranego kafelka */
+  box-shadow: #e0a96d 0 0 3px;
+}

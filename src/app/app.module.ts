@@ -9,6 +9,12 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { SidebarItemComponent } from './sidebar/sidebar-item/sidebar-item.component';
+import { DateBarComponent } from './date-bar/date-bar.component';
+import { MainPaigeComponent } from './main-paige/main-paige.component';
+import { MatchBarComponent } from './main-paige/match-bar/match-bar.component';
+import { MatchBarItemComponent } from './main-paige/match-bar/match-bar-item/match-bar-item.component';
+import { MatchBarItemMatchComponent } from './main-paige/match-bar/match-bar-item/match-bar-item-match/match-bar-item-match.component';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +23,12 @@ import { SidebarItemComponent } from './sidebar/sidebar-item/sidebar-item.compon
     LoginComponent,
     RegisterComponent,
     SidebarItemComponent,
+    DateBarComponent,
+    MainPaigeComponent,
+    MatchBarComponent,
+    MatchBarItemComponent,
+    MatchBarItemMatchComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
