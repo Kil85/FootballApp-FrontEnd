@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { MainPaigeService } from '../main-paige/main-paige.service';
+import { MainPaigeService } from '../services/main-paige.service';
 
 @Component({
   selector: 'app-date-bar',
@@ -57,10 +57,10 @@ export class DateBarComponent implements OnInit {
   }
   getFormattedDate(date: Date): string {
     if (this.isToday(date)) {
-      return 'Dzisiaj';
+      return 'Today';
     } else {
       const dayOfWeek = this.getDayOfWeek(date);
-      const shortDayOfWeek = dayOfWeek.slice(0, 2) + '\n';
+      const shortDayOfWeek = dayOfWeek.slice(0, 2);
       const formattedDate = this.datePipe.transform(date, 'dd.MM');
       return `${shortDayOfWeek} ${formattedDate}`;
     }
@@ -77,13 +77,13 @@ export class DateBarComponent implements OnInit {
 
   getDayOfWeek(date: Date): string {
     const days = [
-      'Niedziela',
-      'Poniedziałek',
-      'Wtorek',
-      'Środa',
-      'Czwartek',
-      'Piątek',
-      'Sobota',
+      'Sunday',
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
     ];
     return days[date.getDay()];
   }
@@ -97,6 +97,5 @@ export class DateBarComponent implements OnInit {
     selected.isSelected = true;
     this.selectedDate = selected.isSelected ? selected.absDate : null;
     this.mPageService.setCurrentDate(selected.absDate);
-    console.log(this.mPageService.fetchFixtures());
   }
 }

@@ -1,0 +1,25 @@
+@use "../../styles/colors" as colors;
+.background {
+  .list-group-item-primary {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    --bs-list-group-bg: #131a20;
+    --bs-list-group-color: #ccc;
+    --bs-list-group-border-color: #010b1a;
+    cursor: auto;
+    img {
+      max-width: 40px;
+      max-height: 40px;
+    }
+    p{
+      margin-bottom: 0;
+      margin-left: 15px;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+  }
+  background-color: colors.$backgroundcolor;
+  min-height: 100vh;
+}

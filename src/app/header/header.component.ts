@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AuthService } from '../auth/auth.service';
+import { AuthService } from '../services/auth.service';
 import { Subscription } from 'rxjs';
 
 import { User } from '../shared/user.model';
@@ -22,13 +22,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.userSub = this.auth.user.subscribe((u) => {
       this.isLogged = !!u;
       this.user = u;
-      console.log(this.router.url);
       this.showButtons = !(
         this.router.url.match('/login') || this.router.url.match('/register')
       );
     });
   }
 
+  onLogo() {
+    this.router.navigate(['/']);
+  }
   onSettings() {
     console.log(this.showButtons);
   }
@@ -40,6 +42,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
   onLogin() {
     this.router.navigate(['/login']);
+  }
+  onFavourite() {
+    this.router.navigate(['/favourite']);
   }
 
   private checkPath(url: string) {

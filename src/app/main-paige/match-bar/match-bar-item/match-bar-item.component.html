@@ -1,17 +1,25 @@
 <div class="container ">
     <div class="row justify-content-center">
-        <div class="card">
-            <div class="card-header py-1">
-                <div class="league">
-                    <img [src]="leagueFlag" alt="Country flag" class="mx-1">
-                    <p>{{leagueName}}</p>
+        <div class="card mb-1">
+            <div class="card-header py-1" (click)="onClick($event)">
+                <div class="col-4 justify-content-center align-items-center">
+                    <div class="league">
+                        <img [src]="leagueFlag" alt="Country flag" class="mx-1">
+                        <p>{{leagueName}}</p>
+                    </div>
                 </div>
 
-                <div class="country">
-                    <img [src]="countryFlag" alt="Country flag" class="mx-1">
-                    <p>{{countryName}}</p>
+                <div class="col-4 justify-content-center align-items-center">
+                    <i class="fa-regular fa-star" #star *ngIf="isLogged"></i>
                 </div>
 
+                <div class="col-4 justify-content-center align-items-center">
+                    <div class="country">
+                        <img [lazyLoad]="countryFlag" class="mx-1" alt="Alternate text for image" />
+
+                        <p>{{countryName}}</p>
+                    </div>
+                </div>
             </div>
             <ul class="list-group list-group-flush">
                 <app-match-bar-item-match *ngFor="let m of matches" [match]='m'></app-match-bar-item-match>

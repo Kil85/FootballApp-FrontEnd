@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MainPaigeService } from './main-paige.service';
+import { MainPaigeService } from '../services/main-paige.service';
 import { Subscription } from 'rxjs';
 import { MatchResponse } from '../../model/fixture-response-result.module';
 

@@ -15,6 +15,14 @@ import { MatchBarComponent } from './main-paige/match-bar/match-bar.component';
 import { MatchBarItemComponent } from './main-paige/match-bar/match-bar-item/match-bar-item.component';
 import { MatchBarItemMatchComponent } from './main-paige/match-bar/match-bar-item/match-bar-item-match/match-bar-item-match.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
+import { GameWidgetComponent } from './widgets/game-widget/game-widget.component';
+import {
+  LAZYLOAD_IMAGE_HOOKS,
+  LazyLoadImageModule,
+  ScrollHooks,
+} from 'ng-lazyload-image';
+import { LeagueWidgetComponent } from './widgets/league-widget/league-widget.component';
+import { FavouriteMatchBarComponent } from './favourite-match-bar/favourite-match-bar.component';
 
 @NgModule({
   declarations: [
@@ -29,9 +37,18 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
     MatchBarItemComponent,
     MatchBarItemMatchComponent,
     LoadingSpinnerComponent,
+    GameWidgetComponent,
+    LeagueWidgetComponent,
+    FavouriteMatchBarComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
-  providers: [],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    LazyLoadImageModule,
+  ],
+  providers: [{ provide: LAZYLOAD_IMAGE_HOOKS, useClass: ScrollHooks }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

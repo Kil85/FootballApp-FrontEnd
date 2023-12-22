@@ -1,0 +1,7 @@
+@use "../../../styles/colors" as colors;
+
+.background {
+  height: 100vh;
+  background-color: colors.$backgroundcolor;
+}
+

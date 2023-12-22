@@ -3,18 +3,32 @@
   padding: 0;
   box-sizing: border-box;
 }
+.card {
+  border: 1px solid black;
+  color: #fff;
+}
 
 .card-header {
   display: flex;
-  justify-content: space-around;
+  cursor: pointer;
+  border: 1px solid black;
+  background-color: #1a1a1a;
 
+  .col-4 {
+    display: flex;
+    justify-content: center;
+  }
   .league,
   .country {
     display: flex;
-    
+
     img {
       max-width: 25px;
       max-height: 25px;
     }
+  }
+
+  .fa-solid {
+    color: gold;
   }
 }

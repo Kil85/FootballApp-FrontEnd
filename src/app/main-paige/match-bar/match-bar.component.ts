@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatchResponse } from '../../../model/fixture-response-result.module';
 import { Subscription } from 'rxjs';
-import { MainPaigeService } from '../main-paige.service';
+import { MainPaigeService } from '../../services/main-paige.service';
 
 @Component({
   selector: 'app-match-bar',

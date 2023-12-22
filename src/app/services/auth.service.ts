@@ -5,6 +5,7 @@ import { BehaviorSubject, catchError, throwError } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { User } from '../shared/user.model';
 import { Router } from '@angular/router';
+import { UserResponse } from '../../model/user-response-model';
 
 @Injectable({
   providedIn: 'root',
@@ -18,16 +19,10 @@ export class AuthService {
 
   login(mail: string, password: string) {
     return this.http
-      .post(
-        this.baseLink + 'login',
-        {
-          email: mail,
-          password: password,
-        },
-        {
-          responseType: 'text',
-        }
-      )
+      .post<UserResponse>(this.baseLink + 'login', {
+        email: mail,
+        password: password,
+      })
       .pipe(
         catchError((error: HttpErrorResponse) => {
           return throwError(() => new Error(error.error));
@@ -35,13 +30,15 @@ export class AuthService {
       );
   }
 
-  handleJwt(jwt) {
+  handleJwt(userDto: UserResponse) {
     const helper = new JwtHelperService();
+    const jwt = userDto.jwt;
 
     const decodedToken = helper.decodeToken(jwt);
-    const expirationDate = new Date(
-      new Date().getTime() + +decodedToken.exp * 1000
-    );
+    // const expirationDate = new Date(
+    //   new Date().getTime() + +decodedToken.exp * 1000
+    // );
+    const expirationDate = new Date(decodedToken.exp * 1000);
 
     const nameIdentifier =
       decodedToken[
@@ -55,38 +52,34 @@ export class AuthService {
       decodedToken[
         'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'
       ];
+    const teamsIds = userDto.teamsIds;
+    const leaguesIds = userDto.leaguesIds;
 
-    const user = new User(email, nameIdentifier, role, jwt, expirationDate);
+    const user = new User(
+      email,
+      nameIdentifier,
+      role,
+      teamsIds,
+      leaguesIds,
+      jwt,
+      expirationDate
+    );
     this.user.next(user);
-    this.autoLogout(decodedToken.exp);
+    const expirationDuration =
+      new Date(expirationDate).getTime() - new Date().getTime();
+    this.autoLogout(expirationDuration);
     localStorage.setItem('userData', JSON.stringify(user));
   }
 
   autoLogin() {
-    const userData: {
-      email: string;
-      id: string;
-      _token: string;
-      role: string;
-      _tokenExpirationDate: string;
-    } = JSON.parse(localStorage.getItem('userData'));
+    const userData: User = JSON.parse(localStorage.getItem('userData'));
     if (!userData) {
       return;
     }
-
-    const loadedUser = new User(
-      userData.email,
-      userData.id,
-      userData.role,
-      userData._token,
-      new Date(userData._tokenExpirationDate)
-    );
-
-    if (loadedUser.token) {
-      this.user.next(loadedUser);
+    if (userData.token) {
+      this.user.next(userData);
       const expirationDuration =
-        new Date(userData._tokenExpirationDate).getTime() -
-        new Date().getTime();
+        new Date(userData.tokenExpirationDate).getTime() - new Date().getTime();
       this.autoLogout(expirationDuration);
     }
   }

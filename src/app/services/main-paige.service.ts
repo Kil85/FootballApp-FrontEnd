@@ -20,6 +20,7 @@ export class MainPaigeService {
     const year = today.getFullYear();
 
     this.currentDate = `${day}.${month}.${year}`;
+    this.fetchFixtures();
   }
 
   setCurrentDate(date: string) {
@@ -29,11 +30,10 @@ export class MainPaigeService {
     const year = dateObj.getFullYear();
 
     this.currentDate = `${day}.${month}.${year}`;
+    this.fetchFixtures();
   }
 
   fetchFixtures() {
-    console.log(this.currentDate);
-
     let params = new HttpParams();
     params = params.append('date', this.currentDate);
 
@@ -42,7 +42,6 @@ export class MainPaigeService {
         params,
       })
       .subscribe((fetch) => {
-        console.log(fetch);
         this.fetchSubject.next();
         this.matchesSubject.next(fetch);
       });

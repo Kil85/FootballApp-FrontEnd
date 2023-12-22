@@ -1,1 +1,0 @@
-* Poprawa formularza rejestracji, porownanie password i confirmPassword, poszukanie czegos o podpowiedziach w razie bledu

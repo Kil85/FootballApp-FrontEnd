@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 
@@ -41,6 +41,6 @@ export class RegisterComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    if (this.subscription) this.subscription.unsubscribe();
   }
 }

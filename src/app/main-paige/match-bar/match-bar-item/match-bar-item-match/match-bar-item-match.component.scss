@@ -5,17 +5,33 @@
 }
 
 a {
+  background-color: #2c2c2c;
+  border: black 1px solid;
+  color: #ddd;
+
   .col-md-2 {
     display: flex;
     justify-content: center;
   }
   cursor: pointer;
-  // display: flex;
-  // justify-content: space-evenly;
-  // align-items: center;
 
   img {
     max-height: 50px;
     max-width: 50px;
+  }
+
+  .time-div {
+    display: flex;
+
+    position: absolute;
+    top: 0;
+  }
+
+  .time {
+    display: inline-block;
+  }
+
+  .fa-solid {
+    color: gold;
   }
 }

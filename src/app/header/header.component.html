@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" (click)="onLogo()">
             <img src="assets/images/football-157930_640.png" alt="Ball" width="30" height="30"
                 class="d-inline-block align-text-top">
             FootballApp
@@ -12,15 +12,16 @@
                         {{user.email}}
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item logout" (click)="onLogout()">Wyloguj</a></li>
-                        <li><a class="dropdown-item settings" (click)="onSettings()">Ustawienia konta</a></li>
+                        <li><a class="dropdown-item logout" (click)="onLogout()">Logout</a></li>
+                        <li><a class="dropdown-item settings" (click)="onFavourite()">Favourite Teams</a></li>
+                        <li><a class="dropdown-item settings" (click)="onSettings()">Account Settings</a></li>
                     </ul>
                 </li>
                 <li class="nav-item" *ngIf="!isLogged">
                     <button type="button" class="btn btn-outline-info me-2" (click)="onLogin()">Login</button>
                 </li>
                 <li class="nav-item" *ngIf="!isLogged">
-                    <button type="button" class="btn btn-outline-warning" (click)="onRegister()">Rejestracja</button>
+                    <button type="button" class="btn btn-outline-warning" (click)="onRegister()">Register</button>
                 </li>
             </ul>
         </div>
