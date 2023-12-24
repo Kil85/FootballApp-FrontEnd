@@ -35,3 +35,12 @@ export interface Country {
 export interface MatchResponse {
   result: Match[][];
 }
+
+export interface TeamNFavMatches {
+  team: Team;
+  fixtures: MatchResponse;
+}
+
+export interface FavouriteMatchesResponse {
+  result: TeamNFavMatches[];
+}

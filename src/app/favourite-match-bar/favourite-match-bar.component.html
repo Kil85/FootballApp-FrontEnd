@@ -3,19 +3,31 @@
     <div class="container">
         <div class="row">
             <!-- <div class="col-md-12"> -->
-            <app-date-bar></app-date-bar>
-
+            <!-- <app-date-bar></app-date-bar> -->
+            <!-- 
             <div class="list-group ">
-                <div class="list-group-item list-group-item-primary justify-content-center align-items-center" *ngFor="let league of matches">
-                    <img [lazyLoad]="clubLogo" alt="Team Logo">
-                    <p>{{clubName}}</p>
+                <div class="list-group-item list-group-item-primary justify-content-center align-items-center"
+                    *ngFor="let teamNFavMatches of matches">
+                    <img [lazyLoad]="teamNFavMatches.team.logo" alt="Team Logo">
+                    <p>{{teamNFavMatches.team.name}}</p>
                 </div>
             </div>
-            <app-match-bar-item *ngFor="let league of matches" [matches]='league'></app-match-bar-item>
+            <app-match-bar-item *ngFor="let league of teamNFavMatches.fixtures" [matches]='league'></app-match-bar-item> -->
+            <div class="list-group" *ngFor="let teamNFavMatches of matches">
+
+                <div class="list-group-item list-group-item-primary justify-content-center align-items-center">
+                    <img [lazyLoad]="teamNFavMatches.team.logo" alt="Team Logo">
+                    <p>{{ teamNFavMatches.team.name }}</p>
+                </div>
+
+                <app-match-bar-item *ngFor="let league of teamNFavMatches.fixtures"
+                    [matches]="league"></app-match-bar-item>
+
+
+
+            </div>
             <!-- <app-match-bar></app-match-bar> -->
             <!-- </div> -->
-            <div class="col-md-3">
-            </div>
         </div>
     </div>
 </div>

@@ -2,11 +2,16 @@ import {
   HttpClient,
   HttpErrorResponse,
   HttpHeaders,
+  HttpParams,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, tap, throwError } from 'rxjs';
 
 import { User } from '../shared/user.model';
+import {
+  FavouriteMatchesResponse,
+  MatchResponse,
+} from '../../model/fixture-response-result.module';
 
 @Injectable({
   providedIn: 'root',
@@ -85,6 +90,21 @@ export class FavouriteService {
           return throwError(() => new Error(error.error));
         }),
         tap(() => this.removeLeagueFromLocalStorage(user, leagueId))
+      );
+  }
+
+  getMatchesOfFavTeams(userId: string) {
+    let params = new HttpParams();
+    params = params.append('userId', userId);
+
+    return this.http
+      .get<FavouriteMatchesResponse>(`${this.baseLink}favteams`, {
+        params,
+      })
+      .pipe(
+        tap((res) => {
+          console.log(res);
+        })
       );
   }
 

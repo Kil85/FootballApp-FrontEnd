@@ -32,6 +32,7 @@ export class MatchBarItemComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    console.log(this.matches);
     this.countryName = this.matches.at(0).league.country.name;
     this.countryFlag = this.matches.at(0).league.country.flag;
     this.leagueName = this.matches.at(0).league.name;
