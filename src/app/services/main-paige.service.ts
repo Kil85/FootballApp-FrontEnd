@@ -1,18 +1,30 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { MatchResponse } from '../../model/fixture-response-result.module';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
+import { AuthService } from './auth.service';
+import { User } from '../shared/user.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class MainPaigeService {
+export class MainPaigeService implements OnDestroy {
   private baseLink = 'https://localhost:7183';
   private currentDate: string;
   private fetchSubject: Subject<void> = new Subject<void>();
+  private fetchFavLeagueSubject: Subject<void> = new Subject<void>();
   private matchesSubject: Subject<MatchResponse> = new Subject<MatchResponse>();
+  private matchesFavLeagueSubject: Subject<MatchResponse> =
+    new Subject<MatchResponse>();
+  userSub: Subscription;
+  user: User;
+  isLogged = false;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private auth: AuthService) {
+    this.userSub = this.auth.user.subscribe((u) => {
+      this.isLogged = !!u;
+      this.user = u;
+    });
     const today = new Date();
 
     const day = today.getDate().toString().padStart(2, '0');
@@ -20,7 +32,8 @@ export class MainPaigeService {
     const year = today.getFullYear();
 
     this.currentDate = `${day}.${month}.${year}`;
-    this.fetchFixtures();
+    if (this.isLogged) this.fetchFavouriteLeague();
+    else this.fetchFixtures();
   }
 
   setCurrentDate(date: string) {
@@ -47,6 +60,20 @@ export class MainPaigeService {
       });
   }
 
+  fetchFavouriteLeague() {
+    let params = new HttpParams();
+    params = params.append('userId', this.user.id);
+    params = params.append('date', this.currentDate);
+    return this.http
+      .get<MatchResponse>(`${this.baseLink}/api/favourite/favleagues`, {
+        params,
+      })
+      .subscribe((fetch) => {
+        this.fetchFavLeagueSubject.next();
+        this.matchesFavLeagueSubject.next(fetch);
+      });
+  }
+
   getMatchesSubject() {
     return this.matchesSubject.asObservable();
   }
@@ -57,5 +84,20 @@ export class MainPaigeService {
 
   resendRequest(): void {
     return this.fetchSubject.next();
+  }
+
+  getmatchesFavLeagueSubject() {
+    return this.matchesFavLeagueSubject.asObservable();
+  }
+
+  getFetchFavLeagueSubject() {
+    return this.fetchFavLeagueSubject.asObservable();
+  }
+
+  resendRequestFetchFavLeagueSubject(): void {
+    return this.fetchFavLeagueSubject.next();
+  }
+  ngOnDestroy(): void {
+    this.userSub.unsubscribe();
   }
 }

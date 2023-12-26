@@ -10,8 +10,6 @@ import { MatchResponse } from '../../model/fixture-response-result.module';
 })
 export class MainPaigeComponent implements OnInit, OnDestroy {
   private fetchSubscription: Subscription;
-  private fetchedData: MatchResponse[] = []; // Tablica przechowująca dane z zapytań HTTP
-
   constructor(private service: MainPaigeService) {}
 
   ngOnInit(): void {
