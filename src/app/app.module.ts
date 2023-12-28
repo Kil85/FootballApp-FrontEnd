@@ -23,6 +23,7 @@ import {
 } from 'ng-lazyload-image';
 import { LeagueWidgetComponent } from './widgets/league-widget/league-widget.component';
 import { FavouriteMatchBarComponent } from './favourite-match-bar/favourite-match-bar.component';
+import { UserSettingsComponent } from './auth/user-settings/user-settings.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { FavouriteMatchBarComponent } from './favourite-match-bar/favourite-matc
     GameWidgetComponent,
     LeagueWidgetComponent,
     FavouriteMatchBarComponent,
+    UserSettingsComponent,
   ],
   imports: [
     BrowserModule,

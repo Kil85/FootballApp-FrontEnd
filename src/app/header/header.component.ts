@@ -14,6 +14,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   user: User;
   isLogged = false;
   showButtons = true;
+  favOnlySub: Subscription;
+  favOnly: boolean;
   private userSub: Subscription;
 
   constructor(private auth: AuthService, private router: Router) {}
@@ -26,13 +28,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.router.url.match('/login') || this.router.url.match('/register')
       );
     });
+    this.favOnlySub = this.auth.favOnly.subscribe((f) => {
+      this.favOnly = f;
+    });
   }
 
   onLogo() {
     this.router.navigate(['/']);
   }
   onSettings() {
-    console.log(this.showButtons);
+    this.router.navigate(['/settings']);
   }
   onLogout() {
     this.auth.logout();
@@ -46,6 +51,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   onFavourite() {
     this.router.navigate(['/favourite']);
   }
+  onFavLeague() {
+    this.auth.toggleFavOnly();
+    this.router.navigate(['/']);
+    console.log(this.favOnly);
+  }
 
   private checkPath(url: string) {
     this.showButtons = !(url.match('/login') || url.match('/register'));
@@ -53,5 +63,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
     this.userSub.unsubscribe();
+    this.favOnlySub.unsubscribe();
   }
 }

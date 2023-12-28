@@ -13,8 +13,11 @@ import { User } from '../../shared/user.model';
 export class MatchBarComponent implements OnInit, OnDestroy {
   matches: MatchResponse;
   matchesSubscription: Subscription;
+  favMatchesSubscription: Subscription;
   userSub: Subscription;
   user: User;
+  favOnlySub: Subscription;
+  favOnly: boolean;
   isLogged = false;
   isLoaded = false;
 
@@ -28,24 +31,28 @@ export class MatchBarComponent implements OnInit, OnDestroy {
       this.isLogged = !!u;
       this.user = u;
     });
-    if (!this.isLogged) {
-      this.matchesSubscription = this.mPaigeService
-        .getMatchesSubject()
-        .subscribe((m: MatchResponse) => {
-          this.matches = m;
-          this.isLoaded = true;
-        });
-    } else {
-      this.matchesSubscription = this.mPaigeService
-        .getmatchesFavLeagueSubject()
-        .subscribe((m: MatchResponse) => {
-          this.matches = m;
-          this.isLoaded = true;
-        });
-    }
+    this.favOnlySub = this.auth.favOnly.subscribe((f) => {
+      this.favOnly = f;
+    });
+
+    this.matchesSubscription = this.mPaigeService
+      .getMatchesSubject()
+      .subscribe((m: MatchResponse) => {
+        this.matches = m;
+        this.isLoaded = true;
+      });
+
+    this.favMatchesSubscription = this.mPaigeService
+      .getmatchesFavLeagueSubject()
+      .subscribe((m: MatchResponse) => {
+        this.matches = m;
+        this.isLoaded = true;
+      });
   }
 
   ngOnDestroy(): void {
     if (this.matchesSubscription) this.matchesSubscription.unsubscribe();
+    if (this.favMatchesSubscription) this.favMatchesSubscription.unsubscribe();
+    if (this.favOnlySub) this.favOnlySub.unsubscribe();
   }
 }

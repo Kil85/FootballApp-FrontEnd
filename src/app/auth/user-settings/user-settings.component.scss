@@ -48,3 +48,20 @@
     }
   }
 }
+.modal-header {
+  background-color: colors.$darkPirmary;
+  color: #ccc;
+  /* Dodatkowe style */
+}
+
+.modal-body {
+  background-color: colors.$backgroundcolor;
+  color: #ccc;
+  /* Dodatkowe style */
+}
+
+.modal-footer {
+  background-color: colors.$darkPirmary;
+  color: #ccc;
+  /* Dodatkowe style */
+}

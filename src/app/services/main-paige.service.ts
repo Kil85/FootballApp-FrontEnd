@@ -16,7 +16,10 @@ export class MainPaigeService implements OnDestroy {
   private matchesSubject: Subject<MatchResponse> = new Subject<MatchResponse>();
   private matchesFavLeagueSubject: Subject<MatchResponse> =
     new Subject<MatchResponse>();
+
   userSub: Subscription;
+  favOnlySub: Subscription;
+  favOnly: boolean;
   user: User;
   isLogged = false;
 
@@ -25,6 +28,7 @@ export class MainPaigeService implements OnDestroy {
       this.isLogged = !!u;
       this.user = u;
     });
+
     const today = new Date();
 
     const day = today.getDate().toString().padStart(2, '0');
@@ -32,8 +36,23 @@ export class MainPaigeService implements OnDestroy {
     const year = today.getFullYear();
 
     this.currentDate = `${day}.${month}.${year}`;
-    if (this.isLogged) this.fetchFavouriteLeague();
-    else this.fetchFixtures();
+    this.favOnlySub = auth.favOnly.subscribe((f) => {
+      this.favOnly = f;
+      if (this.favOnly) {
+        console.log('dupa');
+        this.fetchFavouriteLeague();
+      } else {
+        console.log('chuj');
+        this.fetchFixtures();
+      }
+    });
+    // if (this.favOnly) {
+    //   console.log('dupa');
+    //   this.fetchFavouriteLeague();
+    // } else {
+    //   console.log('chuj');
+    //   this.fetchFixtures();
+    // }
   }
 
   setCurrentDate(date: string) {
@@ -43,7 +62,11 @@ export class MainPaigeService implements OnDestroy {
     const year = dateObj.getFullYear();
 
     this.currentDate = `${day}.${month}.${year}`;
-    this.fetchFixtures();
+    if (this.favOnly) {
+      this.fetchFavouriteLeague();
+    } else {
+      this.fetchFixtures();
+    }
   }
 
   fetchFixtures() {
@@ -99,5 +122,6 @@ export class MainPaigeService implements OnDestroy {
   }
   ngOnDestroy(): void {
     this.userSub.unsubscribe();
+    this.favOnlySub.unsubscribe();
   }
 }

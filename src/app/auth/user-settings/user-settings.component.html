@@ -1,0 +1,68 @@
+<div class="background">
+    <app-header></app-header>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-success text-white text-center">
+                        <h3 class="mb-0">Account Settings</h3>
+                    </div>
+                    <p class="text-danger text-center transform-uppercase fw-bold mt-3 mb-0 mx-1" *ngIf="errorMessage">
+                        {{errorMessage}}</p>
+                    <div class="card-body">
+                        <form #authForm="ngForm">
+                            <div class="mb-3">
+                                <label for="login" class="form-label">Current Password</label>
+                                <input type="password" id="curentPassword" autocomplete="current-password"
+                                    class="form-control" ngModel name="currentPassword" required minlength="6"
+                                    class="form-control" placeholder="Enter Current Password">
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">New Password</label>
+                                <input type="password" id="newPassword" ngModel name="newPassword"
+                                    autocomplete="newPassword" required minlength="6" class="form-control"
+                                    placeholder="Enter password">
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Confirm New Password</label>
+                                <input type="password" id="confirmPassword" ngModel name="confirmPassword"
+                                    autocomplete="confirm-password" required minlength="6" class="form-control"
+                                    placeholder="Enter password">
+                            </div>
+                            <div class="d-grid">
+                                <button type="button" class="btn btn-info text-light mt-3"
+                                    (click)="onChange(authForm)">Change
+                                    Password
+                                </button>
+                                <button type="button" class="btn btn-danger text-light mt-3" data-bs-toggle="modal"
+                                    data-bs-target="#staticBackdrop">Delete Account
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" data-bs-theme="dark">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Delete Confirmation</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <p>Action is permanent.</p>
+                <p>Are You Sure?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" (click)="onDelete()"
+                    data-bs-dismiss="modal">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>

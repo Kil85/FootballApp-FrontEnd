@@ -16,6 +16,8 @@ export class RegisterComponent implements OnDestroy {
 
   onRegister(form) {
     if (!form.valid) {
+      this.errorMessage =
+        'Error: Passwords do not match. Please enter matching passwords';
       return;
     }
     const email = form.value.email;

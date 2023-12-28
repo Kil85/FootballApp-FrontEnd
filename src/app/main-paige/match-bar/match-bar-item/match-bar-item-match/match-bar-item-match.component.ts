@@ -73,7 +73,6 @@ export class MatchBarItemMatchComponent
     this.timeOnly = this.match.time;
     this.homeTeamId = this.match.homeTeam.id.toString();
     this.awayTeamId = this.match.awayTeam.id.toString();
-    console.log(this.isLogged);
   }
 
   ngAfterViewInit(): void {

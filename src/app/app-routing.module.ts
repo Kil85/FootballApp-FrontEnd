@@ -6,6 +6,7 @@ import { MainPaigeComponent } from './main-paige/main-paige.component';
 import { GameWidgetComponent } from './widgets/game-widget/game-widget.component';
 import { LeagueWidgetComponent } from './widgets/league-widget/league-widget.component';
 import { FavouriteMatchBarComponent } from './favourite-match-bar/favourite-match-bar.component';
+import { UserSettingsComponent } from './auth/user-settings/user-settings.component';
 
 const appRoutes: Routes = [
   { path: '', component: MainPaigeComponent, pathMatch: 'full' },
@@ -14,6 +15,7 @@ const appRoutes: Routes = [
   { path: 'game', component: GameWidgetComponent },
   { path: 'league', component: LeagueWidgetComponent },
   { path: 'favourite', component: FavouriteMatchBarComponent },
+  { path: 'settings', component: UserSettingsComponent },
 ];
 
 @NgModule({

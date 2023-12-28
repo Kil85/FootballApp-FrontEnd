@@ -14,6 +14,10 @@
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item logout" (click)="onLogout()">Logout</a></li>
                         <li><a class="dropdown-item settings" (click)="onFavourite()">Favourite Teams</a></li>
+                        <li *ngIf="!favOnly"><a class="dropdown-item settings" (click)="onFavLeague()">Favourite
+                                Leagues</a></li>
+                        <li *ngIf="favOnly"><a class="dropdown-item settings" (click)="onFavLeague()">All Leagues</a>
+                        </li>
                         <li><a class="dropdown-item settings" (click)="onSettings()">Account Settings</a></li>
                     </ul>
                 </li>
