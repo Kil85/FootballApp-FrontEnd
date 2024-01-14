@@ -1,0 +1,1 @@
+Wyswietlanie widgeta z liga wyswietla sie zawsze ten sam sezon

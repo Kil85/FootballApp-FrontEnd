@@ -32,7 +32,6 @@ export class UserSettingsComponent implements OnDestroy {
       this.errorMessage = form.errors;
       return;
     }
-    console.log('dupa');
     const currentPassword = form.value.currentPassword;
     const newPassword = form.value.newPassword;
     const confirmPassword = form.value.confirmPassword;
