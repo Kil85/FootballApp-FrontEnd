@@ -55,7 +55,11 @@ export class MatchBarItemComponent implements OnInit, OnDestroy {
   }
 
   private widgetChandler() {
-    const urlWithParams = this.router.createUrlTree(['/league']).toString();
+    const queryParams = { leagueId: this.leagueId };
+
+    const urlWithParams = this.router
+      .createUrlTree(['/league'], { queryParams })
+      .toString();
     const newWindow = window.open('about:blank', '_blank');
     if (newWindow) {
       newWindow.location.href = urlWithParams;
