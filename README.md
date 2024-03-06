@@ -29,4 +29,19 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Overview
 
 ### Main paige
+
 ![MainPaige](https://github.com/Kil85/FootballApp-FrontEnd/assets/72380654/1338cf3e-6265-4d2e-a077-5b9017295791)
+
+### Registration
+
+![Rejestracja](https://github.com/Kil85/FootballApp-FrontEnd/assets/72380654/5eca8fce-49c5-46bc-9fd4-90cc5ccbd7f2)
+
+### Game widget
+
+![Podgląd spotkania](https://github.com/Kil85/FootballApp-FrontEnd/assets/72380654/a4f376d1-0468-4e4b-999e-8ec2cc7edc20)
+
+### Game statistics
+
+![statystylki](https://github.com/Kil85/FootballApp-FrontEnd/assets/72380654/8e678b59-f124-4fa7-ad74-d37e9c2278ab)
+
+
